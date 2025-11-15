@@ -1,70 +1,255 @@
-# Getting Started with Create React App
+# CampusArena v2.0 - Industry-Ready Campus Event Management Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional MERN stack application for managing campus events with role-based authentication, real-time notifications, and comprehensive admin controls.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### For Students
+- Browse and search campus events by category
+- Register/cancel event registrations
+- View personal registration history
+- Email confirmations for registrations
 
-### `npm start`
+### For Admins
+- Complete event management (CRUD operations)
+- User management and role assignment
+- Dashboard with analytics and statistics
+- Event registration tracking
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🏗️ Architecture
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+campusarena/
+├── server/                     # Backend (Express + MongoDB)
+│   ├── config/db.js           # Database connection
+│   ├── controllers/           # Business logic
+│   ├── middlewares/           # Auth & error handling
+│   ├── models/               # MongoDB schemas
+│   ├── routes/               # API endpoints
+│   ├── utils/                # Email & file upload
+│   └── tests/                # Jest + Supertest tests
+├── client/                    # Frontend (React)
+│   ├── src/
+│   │   ├── api/              # Axios configuration
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Route components
+│   │   └── context/          # State management
+└── docs/                     # API documentation
+```
 
-### `npm test`
+## 🛠️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Backend:**
+- Node.js & Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- bcryptjs for password hashing
+- Nodemailer for email notifications
+- Multer for file uploads
+- Helmet & CORS for security
+- Jest & Supertest for testing
 
-### `npm run build`
+**Frontend:**
+- React 18 with Hooks
+- Axios for API calls
+- Context API for state management
+- Tailwind CSS for styling
+- Responsive design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚡ Quick Start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js (v16+)
+- MongoDB (local or Atlas)
+- Git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd campusarena
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Setup Backend**
+```bash
+cd server
+npm install
+cp .env.example .env
+# Edit .env with your configuration
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Setup Frontend**
+```bash
+cd ../client
+npm install
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Access the application**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔧 Environment Configuration
 
-## Learn More
+Create `.env` file in the server directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/campusarena
+MONGODB_TEST_URI=mongodb://localhost:27017/campusarena_test
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Authentication
+JWT_SECRET=your_super_secret_jwt_key_here
 
-### Code Splitting
+# Server
+PORT=5000
+NODE_ENV=development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Email (Nodemailer)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password
 
-### Analyzing the Bundle Size
+# Frontend URL (for CORS)
+FRONTEND_URL=http://localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 👤 Default Admin Accounts
 
-### Making a Progressive Web App
+Two admin accounts are created automatically:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Username | Password | Role |
+|----------|----------|------|
+| admin1 | Admin@123 | Admin |
+| admin2 | Admin@456 | Admin |
 
-### Advanced Configuration
+## 📡 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Authentication
+- `POST /api/auth/signup` - Register new user
+- `POST /api/auth/login` - User login
+- `GET /api/auth/profile` - Get user profile
 
-### Deployment
+### Events
+- `GET /api/events` - Get all events (with pagination & filters)
+- `POST /api/events` - Create event (Admin only)
+- `PUT /api/events/:id` - Update event (Admin only)
+- `DELETE /api/events/:id` - Delete event (Admin only)
+- `POST /api/events/:id/register` - Register for event
+- `DELETE /api/events/:id/register` - Cancel registration
+- `GET /api/events/my-registrations` - Get user's registrations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Users (Admin only)
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create user
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
+- `GET /api/users/stats` - Get dashboard statistics
 
-### `npm run build` fails to minify
+## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Backend Tests
+```bash
+cd server
+npm test
+```
+
+### API Testing with Postman
+Import the provided Postman collection: `CampusArena-API.postman_collection.json`
+
+## 🐳 Docker Deployment
+
+### Using Docker Compose
+```bash
+docker-compose up -d
+```
+
+### Manual Docker Build
+```bash
+# Backend
+docker build -t campusarena-server ./server
+
+# Frontend
+docker build -t campusarena-client ./client
+```
+
+## 🔒 Security Features
+
+- JWT-based authentication with 30-day expiration
+- Password hashing with bcrypt (12 rounds)
+- Rate limiting (100 requests per 15 minutes)
+- CORS protection
+- Helmet security headers
+- Input validation and sanitization
+- Role-based access control
+
+## 📊 Database Schema
+
+### User Model
+```javascript
+{
+  username: String (unique, required)
+  email: String (unique, required)
+  password: String (hashed, required)
+  role: String (enum: ['Student', 'Admin'])
+  profileImage: String
+  isActive: Boolean
+  timestamps: true
+}
+```
+
+### Event Model
+```javascript
+{
+  title: String (required)
+  description: String (required)
+  date: Date (required)
+  location: String (required)
+  category: String (enum: ['Academic', 'Cultural', 'Sports', 'Technical', 'Social'])
+  capacity: Number (required)
+  registeredUsers: [{ user: ObjectId, registeredAt: Date }]
+  organizer: ObjectId (ref: User)
+  poster: String
+  isActive: Boolean
+  timestamps: true
+}
+```
+
+## 🚀 Deployment
+
+### Production Environment Variables
+```env
+NODE_ENV=production
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/campusarena
+JWT_SECRET=your_production_jwt_secret
+FRONTEND_URL=https://yourdomain.com
+```
+
+### AWS Deployment
+1. Use Elastic Beanstalk for backend
+2. Use S3 + CloudFront for frontend
+3. Use MongoDB Atlas for database
+4. Configure environment variables in AWS console
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support, email support@campusarena.com or create an issue in the repository.
+
+---
+
+**Built with ❤️ for campus communities**
