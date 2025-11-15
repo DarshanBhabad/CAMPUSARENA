@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-This project is live! Check it out:
+This project is live! Check it out
 
 [Check out the live project!](https://campusarena.onrender.com)
 
