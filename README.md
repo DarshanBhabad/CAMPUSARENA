@@ -1,3 +1,14 @@
+---
+
+## 🚀 Live Demo
+
+This project is live! Check it out:
+
+**[https://campusarena.onrender.com](https://campusarena.onrender.com)**
+
+---
+
+## 🛠️ Tech Stack
 # CampusArena v2.0 - Industry-Ready Campus Event Management Platform
 
 A professional MERN stack application for managing campus events with role-based authentication, real-time notifications, and comprehensive admin controls.
