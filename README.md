@@ -4,7 +4,7 @@
 
 This project is live! Check it out
 
-[Check out the live project!](https://campusarena.onrender.com)
+[Check out the live project!](https://campusarena-1.onrender.com/)
 
 ---
 
